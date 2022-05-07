@@ -40,6 +40,17 @@ public class CarShopController {
         return "carshop/edit";
     }
 
+    @GetMapping("/create")
+    public String createForm(final Model model) {
+        return "carshop/create";
+    }
+
+    @PostMapping("/create")
+    public String createRolePlay(final Model model, final Car car) {
+        Car savedCar = this.carShopService.save(car);
+        return findAll(model);
+    }
+
     @PostMapping(value = "/update", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     public String update(final Model model,
                                @RequestParam(value = "id", required = false) Long id,

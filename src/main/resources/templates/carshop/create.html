@@ -1,0 +1,74 @@
+<!DOCTYPE HTML>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Autó létrehozó oldal</title>
+
+    <link rel="stylesheet"
+          th:href="@{/webjars/bootstrap/5.1.3/css/bootstrap.min.css}"/>
+    <script th:src="@{/webjars/bootstrap/5.1.3/js/bootstrap.min.js}"></script>
+</head>
+<body>
+    <div class="card mt-3">
+        <div class="card-header">Autó létrehozó oldal</div>
+        <div class="card-body">
+            <div class="col-md-4">
+                <form method="post"
+                      th:action="@{/car-shop/create}">
+                    <div class="form-group">
+                        <label for="ids">ID</label>
+                        <input type="text"
+                               id="id"
+                               name="id"
+                               readonly
+                               class="form-control" required/>
+                    </div>
+                    <div class="form-group">
+                        <label for="brand">Márka</label>
+                        <input type="text"
+                               id="brand"
+                               name="brand"
+                               class="form-control" required/>
+                    </div>
+                    <div class="form-group">
+                        <label for="model">Modell</label>
+                        <input type="text"
+                               id="model"
+                               name="model"
+                               class="form-control" required/>
+                    </div>
+                    <div class="form-group">
+                        <label for="horsepower">Lóerő</label>
+                        <input type="text"
+                               id="horsepower"
+                               name="horsepower"
+                               class="form-control" required/>
+                               
+                    </div>
+                    <div class="form-group">
+                        <label for="fuel">Üzemanyag</label>
+                        <select name="fuel" id="fuel" class="form-control" required>
+                            <option value="">--- Választás ---</option>
+                            <option th:each="i : ${T(hu.nye.progkor.carshop.model.Fuel).values()}" th:value="${i}" th:text="${i}"></option>
+                        </select>
+                               
+                    </div>
+                    <div class="form-group mt-3">
+                        <button th:onclick="|window.location.href='/car-shop'|" class="btn btn-primary"
+                        type="submit">Mentés
+                        </button>
+                        <button th:onclick="|window.location.href='/car-shop'|"
+                        class="btn btn-secondary"
+                        type="submit">Mégsem</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        </div>
+
+</body>
+</html>
