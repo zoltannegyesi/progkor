@@ -52,6 +52,10 @@ public class CarShopService {
     }
 
     private Long getNextId() {
+        return getLastId() + 1L;
+    }
+
+    private Long getLastId() {
         return DATA_BASE.stream().mapToLong(Car::getId).max().orElse(0);
     }
 }
