@@ -18,4 +18,12 @@ public class Car {
     Integer hoursepower;
 
     Fuel fuel;
+
+    public Car apply(Car carChanges) {
+        this.brand = carChanges.getBrand();
+        this.model = carChanges.getModel();
+        this.hoursepower = carChanges.getHoursepower();
+        this.fuel = carChanges.getFuel();
+        return this;
+    }
 }

@@ -47,6 +47,10 @@ public class CarShopService {
         return Mono.just(car);
     }
 
+    public Mono<Car> update(Long id, Car carChanges) {
+        return load(id).map(car->car.apply(carChanges));
+    }
+
     private Long getNextId() {
         return DATA_BASE.stream().mapToLong(Car::getId).max().orElse(0);
     }
