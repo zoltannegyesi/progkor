@@ -49,8 +49,8 @@ public class CarShopRestController {
     }
 
     @DeleteMapping(value = "{id}/edit")
-    public ResponseEntity<Void> delete(Long id) {
+    public ResponseEntity<Void> delete(@PathVariable("id") Long id) {
         this.carShopService.delete(id);
-        return new ResponseEntity<>(HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
