@@ -1,6 +1,7 @@
 package hu.nye.progkor.carshop.controller;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import hu.nye.progkor.carshop.model.Car;
+import hu.nye.progkor.carshop.model.Fuel;
 import hu.nye.progkor.carshop.service.CarShopService;
 @Controller
 @RequestMapping(value = "/car-shop")

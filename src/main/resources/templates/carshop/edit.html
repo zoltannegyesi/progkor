@@ -57,20 +57,20 @@
                     <label for="fuel">Üzemanyag</label>
                     <select name="fuel" id="fuel" class="form-control">
                         <option value="">--- Választás ---</option>
-                        <option value="PETROL">Petrol</option>
-                        <option value="DIESEL">Diesel</option>
-                        <option value="HYBRID">Hybrid</option>
-                        <option value="ELECTRIC">Electric</option>
-                        <option value="LPG">LPG</option>
+                        <option th:each="i : ${T(hu.nye.progkor.carshop.model.Fuel).values()}" th:value="${i}" th:text="${i}" 
+                        th:selected="${i==car.fuel}"  ></option>
                     </select>
                            
                 </div>
-                <button th:onclick="|window.location.href='/car-shop/${car.id}'|" class="btn btn-primary"
-                        type="submit">Módosít
-                </button>
-                <button th:onclick="|window.location.href='/car-shop/${car.id}'|"
-                   class="btn btn-secondary"
-                   type="submit">Mégsem</button>
+                <div class="form-group mt-3">
+                    <button th:onclick="|window.location.href='/car-shop/${car.id}'|" class="btn btn-primary"
+                    type="submit">Módosít
+                    </button>
+                    <button th:onclick="|window.location.href='/car-shop/${car.id}'|"
+                    class="btn btn-secondary"
+                    type="submit">Mégsem</button>
+                </div>
+                
             </form>
         </div>
     </div>
