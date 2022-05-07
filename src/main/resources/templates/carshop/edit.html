@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Szerepjáték editing form</title>
+
+    <link rel="stylesheet"
+          th:href="@{/webjars/bootstrap/5.1.3/css/bootstrap.min.css}"/>
+    <script th:src="@{/webjars/bootstrap/5.1.3/js/bootstrap.min.js}"></script>
+</head>
+<body>
+    <div class="card mt-3">
+    <div class="card-header">Autó módosító oldal</div>
+    <div class="card-body">
+        <div class="col-md-4">
+            <form method="put"
+                  th:action="@{/car-shop/update}">
+                <div class="form-group">
+                    <label for="name">ID</label>
+                    <input type="text"
+                           id="id"
+                           name="id"
+                           readonly
+                           class="form-control"
+                           th:value="${car.id}"/>
+                </div>
+                <div class="form-group">
+                    <label for="brand">Márka</label>
+                    <input type="text"
+                           id="brand"
+                           name="brand"
+                           class="form-control"
+                           th:value="${car.brand}"/>
+                </div>
+                <div class="form-group">
+                    <label for="model">Modell</label>
+                    <input type="text"
+                           id="model"
+                           name="model"
+                           class="form-control"
+                           th:value="${car.model}"/>
+                </div>
+                <div class="form-group">
+                    <label for="horsepower">Lóerő</label>
+                    <input type="text"
+                           id="horsepower"
+                           name="horsepower"
+                           class="form-control"
+                           th:value="${car.horsepower}"/>
+                           
+                </div>
+                <div class="form-group">
+                    <label for="fuel">Üzemanyag</label>
+                    <select name="fuel" id="fuel" class="form-control">
+                        <option value="">--- Választás ---</option>
+                        <option value="PETROL">Petrol</option>
+                        <option value="DIESEL">Diesel</option>
+                        <option value="HYPRID">Hybrid</option>
+                        <option value="ELECTRIC">Electric</option>
+                        <option value="LPG">LPG</option>
+                    </select>
+                           
+                </div>
+                <button class="btn btn-primary"
+                        type="submit">Módosít
+                </button>
+                <a th:href="@{/car-shop}"
+                   class="btn btn-secondary"
+                   type="submit">Mégsem</a>
+            </form>
+        </div>
+    </div>
+    </div>
+</body>
+</html>
