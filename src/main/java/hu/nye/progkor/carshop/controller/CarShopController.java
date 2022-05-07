@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import hu.nye.progkor.carshop.model.Car;
@@ -26,5 +27,12 @@ public class CarShopController {
         List<Car> cars = this.carShopService.findAll();
         model.addAttribute("cars", cars);
         return "carshop/list";
+    }
+
+    @GetMapping(value = "/{id}")
+    public String load(@PathVariable Long id ,final Model model) {
+        Car car = this.carShopService.load(id);
+        model.addAttribute("car", car);
+        return "carshop/edit";
     }
 }
