@@ -1,5 +1,7 @@
 package hu.nye.progkor.carshop.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,8 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import hu.nye.progkor.carshop.model.Car;
 import hu.nye.progkor.carshop.service.CarShopService;
-import reactor.core.publisher.Flux;
-
 @Controller
 @RequestMapping(value = "/car-shop")
 public class CarShopController {
@@ -22,8 +22,8 @@ public class CarShopController {
     }
 
     @GetMapping
-    public String findAll(Model model) {
-        Flux<Car> cars = this.carShopService.findAll();
+    public String findAll(final Model model) {
+        List<Car> cars = this.carShopService.findAll();
         model.addAttribute("cars", cars);
         return "carshop/list";
     }
