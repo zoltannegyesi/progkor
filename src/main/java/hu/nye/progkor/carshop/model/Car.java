@@ -15,8 +15,6 @@ public class Car {
 
     String model;
 
-    Integer displacement;
-
     Integer hoursepower;
 
     Fuel fuel;
