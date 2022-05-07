@@ -8,16 +8,17 @@ import org.springframework.stereotype.Service;
 
 import hu.nye.progkor.carshop.model.Car;
 import hu.nye.progkor.carshop.model.Fuel;
+import reactor.core.publisher.Flux;
 import reactor.core.scheduler.Scheduler;
 
 @Service
-public class CarService {
+public class CarShopService {
 
     private static final List<Car> DATA_BASE = new ArrayList<>();
     private final Scheduler scheduler;
 
     @Autowired
-    public CarService(Scheduler scheduler) {
+    public CarShopService(Scheduler scheduler) {
         this.scheduler = scheduler;
     }
 
@@ -27,8 +28,7 @@ public class CarService {
         DATA_BASE.add(new Car(3L, "Tesla", "Model 3", 283, Fuel.ELECTRIC));
     }
 
-    
-
-
-    
+    public Flux<Car> findAll() {
+        return Flux.defer(()->Flux.fromIterable(DATA_BASE)).subscribeOn(scheduler);
+    }
 }
