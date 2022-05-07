@@ -8,7 +8,9 @@ import org.springframework.stereotype.Service;
 
 import hu.nye.progkor.carshop.model.Car;
 import hu.nye.progkor.carshop.model.Fuel;
+import hu.nye.progkor.carshop.model.exception.NotFoundException;
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 import reactor.core.scheduler.Scheduler;
 
 @Service
@@ -30,5 +32,12 @@ public class CarShopService {
 
     public Flux<Car> findAll() {
         return Flux.defer(()->Flux.fromIterable(DATA_BASE)).subscribeOn(scheduler);
+    }
+
+    public Mono<Car> load(Long id) {
+        return Mono.just(DATA_BASE.stream()
+            .filter(car->id.equals(car.getId()))
+            .findFirst()
+            .orElseThrow(NotFoundException::new));
     }
 }
