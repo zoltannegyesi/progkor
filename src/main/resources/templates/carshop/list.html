@@ -46,7 +46,11 @@
                 <td th:text="${car.fuel}"></td>
                 <td>
                     <button th:onclick="|window.location.href='/car-shop/${car.id}'|"
-                       class="btn btn-success w-100">Szerkesztés</button>
+                       class="btn btn-success w-75">Szerkesztés</button>
+                </td>
+                <td>
+                    <button th:onclick="|window.location.href='/car-shop/${car.id}/delete'|"
+                       class="btn btn-danger w-75">Törlés</button>
                 </td>
             </tr>
             </tbody>

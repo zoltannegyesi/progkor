@@ -1,7 +1,6 @@
 package hu.nye.progkor.carshop.controller;
 
 import java.util.List;
-import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import hu.nye.progkor.carshop.model.Car;
-import hu.nye.progkor.carshop.model.Fuel;
+import hu.nye.progkor.carshop.model.exception.NotFoundException;
 import hu.nye.progkor.carshop.service.CarShopService;
 @Controller
 @RequestMapping(value = "/car-shop")
@@ -47,6 +46,16 @@ public class CarShopController {
                                final Car carChanges) {
     final Car car = this.carShopService.update(id, carChanges);                               
     model.addAttribute("car", car);
+    return findAll(model);
+  }
+
+  @GetMapping("/{id}/delete")
+  public String delete(final @PathVariable("id") Long id, final Model model) {
+    try {
+      this.carShopService.delete(id);
+    } catch (NotFoundException e) {
+      // Ignored
+    }
     return findAll(model);
   }
 }
