@@ -51,6 +51,11 @@ public class CarShopService {
         return load(id).map(car->car.apply(carChanges));
     }
 
+    public void delete(Long id) {
+        Car car = load(id).block();
+        DATA_BASE.remove(car);
+    }
+
     private Long getNextId() {
         return getLastId() + 1L;
     }

@@ -1,6 +1,9 @@
 package hu.nye.progkor.carshop.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -43,5 +46,11 @@ public class CarShopRestController {
     @PutMapping(value = "/{id}/edit")
     public Mono<Car> update(@PathVariable("id") Long id, @RequestBody Car carChanges) {
         return this.carShopService.update(id, carChanges);
+    }
+
+    @DeleteMapping(value = "{id}/edit")
+    public ResponseEntity<Void> delete(Long id) {
+        this.carShopService.delete(id);
+        return new ResponseEntity<>(HttpStatus.ACCEPTED);
     }
 }
