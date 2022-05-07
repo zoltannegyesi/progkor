@@ -40,4 +40,14 @@ public class CarShopService {
             .findFirst()
             .orElseThrow(NotFoundException::new));
     }
+
+    public Mono<Car> save(Car car) {
+        car.setId(getNextId());
+        DATA_BASE.add(car);
+        return Mono.just(car);
+    }
+
+    private Long getNextId() {
+        return DATA_BASE.stream().mapToLong(Car::getId).max().orElse(0);
+    }
 }
