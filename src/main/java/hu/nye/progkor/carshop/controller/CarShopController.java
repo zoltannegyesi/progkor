@@ -21,5 +21,10 @@ public class CarShopController {
         this.carShopService = carShopService;
     }
 
-    
+    @GetMapping
+    public String findAll(Model model) {
+        Flux<Car> cars = this.carShopService.findAll();
+        model.addAttribute("cars", cars);
+        return "carshop/list";
+    }
 }
