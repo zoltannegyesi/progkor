@@ -5,9 +5,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import hu.nye.progkor.carshop.model.Car;
 import hu.nye.progkor.carshop.service.CarShopService;
@@ -35,4 +38,13 @@ public class CarShopController {
         model.addAttribute("car", car);
         return "carshop/edit";
     }
+
+    @PostMapping(value = "/update", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    public String update(final Model model,
+                               @RequestParam(value = "id", required = false) Long id,
+                               final Car carChanges) {
+    final Car car = this.carShopService.update(id, carChanges);                               
+    model.addAttribute("car", car);
+    return findAll(model);
+  }
 }

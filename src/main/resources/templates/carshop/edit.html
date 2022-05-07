@@ -17,7 +17,7 @@
     <div class="card-header">Autó módosító oldal</div>
     <div class="card-body">
         <div class="col-md-4">
-            <form method="put"
+            <form method="post"
                   th:action="@{/car-shop/update}">
                 <div class="form-group">
                     <label for="name">ID</label>
@@ -59,18 +59,18 @@
                         <option value="">--- Választás ---</option>
                         <option value="PETROL">Petrol</option>
                         <option value="DIESEL">Diesel</option>
-                        <option value="HYPRID">Hybrid</option>
+                        <option value="HYBRID">Hybrid</option>
                         <option value="ELECTRIC">Electric</option>
                         <option value="LPG">LPG</option>
                     </select>
                            
                 </div>
-                <button class="btn btn-primary"
+                <button th:onclick="|window.location.href='/car-shop/${car.id}'|" class="btn btn-primary"
                         type="submit">Módosít
                 </button>
-                <a th:href="@{/car-shop}"
+                <button th:onclick="|window.location.href='/car-shop/${car.id}'|"
                    class="btn btn-secondary"
-                   type="submit">Mégsem</a>
+                   type="submit">Mégsem</button>
             </form>
         </div>
     </div>
