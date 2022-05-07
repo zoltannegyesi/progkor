@@ -15,14 +15,14 @@ public class Car {
 
     String model;
 
-    Integer hoursepower;
+    Integer horsepower;
 
     Fuel fuel;
 
     public Car apply(Car carChanges) {
         this.brand = carChanges.getBrand();
         this.model = carChanges.getModel();
-        this.hoursepower = carChanges.getHoursepower();
+        this.horsepower = carChanges.getHorsepower();
         this.fuel = carChanges.getFuel();
         return this;
     }
