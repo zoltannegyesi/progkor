@@ -20,37 +20,37 @@ import hu.nye.progkor.carshop.service.CarShopService;
 @RestController
 @RequestMapping(value = "/api/v1/car-shop")
 public class CarShopRestController {
-    
-    private final CarShopService carShopService;
 
-    @Autowired
-    public CarShopRestController(CarShopService carShopService) {
-        this.carShopService = carShopService;
-    }
+  private final CarShopService carShopService;
 
-    @GetMapping(value = "/list")
-    public List<Car> findAll() {
-        return this.carShopService.findAll();
-    }
+  @Autowired
+  public CarShopRestController(CarShopService carShopService) {
+    this.carShopService = carShopService;
+  }
 
-    @GetMapping(value = "/{id}/edit")
-    public Car load(@PathVariable("id") Long id) {
-        return this.carShopService.load(id);
-    }
+  @GetMapping(value = "/list")
+  public List<Car> findAll() {
+    return this.carShopService.findAll();
+  }
 
-    @PostMapping(value = "/create")
-    public Car save(@RequestBody Car car) {
-        return this.carShopService.save(car);
-    }
+  @GetMapping(value = "/{id}/edit")
+  public Car load(@PathVariable("id") Long id) {
+    return this.carShopService.load(id);
+  }
 
-    @PutMapping(value = "/{id}/edit")
-    public Car update(@PathVariable("id") Long id, @RequestBody Car carChanges) {
-        return this.carShopService.update(id, carChanges);
-    }
+  @PostMapping(value = "/create")
+  public Car save(@RequestBody Car car) {
+    return this.carShopService.save(car);
+  }
 
-    @DeleteMapping(value = "{id}/edit")
-    public ResponseEntity<Void> delete(@PathVariable("id") Long id) {
-        this.carShopService.delete(id);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-    }
+  @PutMapping(value = "/{id}/edit")
+  public Car update(@PathVariable("id") Long id, @RequestBody Car carChanges) {
+    return this.carShopService.update(id, carChanges);
+  }
+
+  @DeleteMapping(value = "{id}/edit")
+  public ResponseEntity<Void> delete(@PathVariable("id") Long id) {
+    this.carShopService.delete(id);
+    return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+  }
 }
