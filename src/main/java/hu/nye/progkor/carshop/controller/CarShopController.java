@@ -47,8 +47,10 @@ public class CarShopController {
 
     @PostMapping("/create")
     public String createRolePlay(final Model model, final Car car) {
-        Car savedCar = this.carShopService.save(car);
-        return findAll(model);
+        this.carShopService.save(car);
+        List<Car> cars = this.carShopService.findAll();
+        model.addAttribute("cars", cars);
+        return "carshop/list";
     }
 
     @PostMapping(value = "/update", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
