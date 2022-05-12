@@ -1,9 +1,5 @@
 package hu.nye.progkor.carshop.model;
 
 public enum Fuel {
-    PETROL,
-    DIESEL,
-    HYBRID,
-    ELECTRIC,
-    LPG
+  PETROL, DIESEL, HYBRID, ELECTRIC, LPG
 }

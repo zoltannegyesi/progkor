@@ -8,22 +8,22 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Car {
-    
-    Long id;
 
-    String brand;
+  Long id;
 
-    String model;
+  String brand;
 
-    Integer horsepower;
+  String model;
 
-    Fuel fuel;
+  Integer horsepower;
 
-    public Car apply(Car carChanges) {
-        this.brand = carChanges.getBrand();
-        this.model = carChanges.getModel();
-        this.horsepower = carChanges.getHorsepower();
-        this.fuel = carChanges.getFuel();
-        return this;
-    }
+  Fuel fuel;
+
+  public Car apply(Car carChanges) {
+    this.brand = carChanges.getBrand();
+    this.model = carChanges.getModel();
+    this.horsepower = carChanges.getHorsepower();
+    this.fuel = carChanges.getFuel();
+    return this;
+  }
 }
