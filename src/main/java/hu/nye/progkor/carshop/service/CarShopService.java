@@ -12,26 +12,31 @@ import hu.nye.progkor.carshop.model.exception.NotFoundException;
 @Service
 public class CarShopService {
 
-  private static final List<Car> DATA_BASE = new ArrayList<>();
+  private final List<Car> dataBase = new ArrayList<>();
 
-  static {
-    DATA_BASE.add(new Car(1L, "Audi", "A7", 245, Fuel.PETROL));
-    DATA_BASE.add(new Car(2L, "Mercedes-AMG", "GLE Coupe", 429, Fuel.HYBRID));
-    DATA_BASE.add(new Car(3L, "Tesla", "Model 3", 283, Fuel.ELECTRIC));
+
+  public CarShopService() {
+    dataBase.add(new Car(1L, "Audi", "A7", 245, Fuel.PETROL));
+    dataBase.add(new Car(2L, "Mercedes-AMG", "GLE Coupe", 429, Fuel.HYBRID));
+    dataBase.add(new Car(3L, "Tesla", "Model 3", 283, Fuel.ELECTRIC));
+  }
+
+  public CarShopService(List<Car> cars) {
+    dataBase.addAll(cars);
   }
 
   public List<Car> findAll() {
-    return DATA_BASE;
+    return dataBase;
   }
 
   public Car load(Long id) {
-    return DATA_BASE.stream().filter(car -> id.equals(car.getId())).findFirst()
+    return dataBase.stream().filter(car -> id.equals(car.getId())).findFirst()
         .orElseThrow(NotFoundException::new);
   }
 
   public Car save(Car car) {
     car.setId(getNextId());
-    DATA_BASE.add(car);
+    dataBase.add(car);
     return car;
   }
 
@@ -41,7 +46,7 @@ public class CarShopService {
 
   public void delete(Long id) {
     Car car = load(id);
-    DATA_BASE.remove(car);
+    dataBase.remove(car);
   }
 
   private Long getNextId() {
@@ -49,6 +54,6 @@ public class CarShopService {
   }
 
   private Long getLastId() {
-    return DATA_BASE.stream().mapToLong(Car::getId).max().orElse(0);
+    return dataBase.stream().mapToLong(Car::getId).max().orElse(0);
   }
 }
